@@ -7,7 +7,9 @@ A full-stack web application that allows users to track product prices from Amaz
 <a href="https://ficcc.github.io/tracker/" style="text-decoration: none;">
 More about Workflow and Deployment
 </a>
+</p>
 
+<p>  
 <a href="https://web-tracker-312f2.web.app/" style="text-decoration: none;">
 Live Preview Here
 </a>
@@ -31,4 +33,5 @@ Live Preview Here
 ![alt text](image-1.png)
 
 The application uses a serverless architecture where the frontend client communicates with a backend cloud function to perform the scraping.
+
 
