@@ -18,7 +18,7 @@ Live Preview Here
 
 ## ✨ Features
 
-- Real-time Price Scraping: Fetches live product data from Amazon AU and JB Hi-Fi.
+- Real-time Price Scraping: Fetches live product data from Amazon AU.
 - Persistent Storage: Uses Cloud Firestore to save and manage your tracked products.
 - Dynamic UI: Frontend built with React for a responsive and interactive experience.
 - Price Change Indicators: Visual cues (🟢/🔴 arrows) show if a product's price has increased or decreased since the last check.
@@ -33,6 +33,7 @@ Live Preview Here
 ![alt text](image-1.png)
 
 The application uses a serverless architecture where the frontend client communicates with a backend cloud function to perform the scraping.
+
 
 
 
