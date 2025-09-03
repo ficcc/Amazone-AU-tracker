@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Price Tracker App - Project Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Source+Code+Pro:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --light-gray: #f9fafb;
+        --medium-gray: #e5e7eb;
+        --dark-gray: #374151;
+        --text-color: #1f2937;
+        --text-muted: #6b7280;
+        --bg-color: white;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        --header-color: var(--dark-gray);
+        --border-color: var(--medium-gray);
+
+        --flow-box-bg: #eef2ff;
+        --flow-box-border: #c7d2fe;
+        --flow-box-user-bg: #fefce8;
+        --flow-box-user-border: #fde68a;
+        --flow-box-backend-bg: #f0fdf4;
+        --flow-box-backend-border: #bbf7d0;
+      }
+
+      html.dark {
+        --light-gray: #030712;
+        --medium-gray: #374151;
+        --dark-gray: #d1d5db;
+        --text-color: #f9fafb;
+        --text-muted: #9ca3af;
+        --bg-color: #111827;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+          0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        --header-color: #f9fafb;
+        --border-color: #374151;
+
+        --flow-box-bg: #312e81;
+        --flow-box-border: #4f46e5;
+        --flow-box-user-bg: #422006;
+        --flow-box-user-border: #78350f;
+        --flow-box-backend-bg: #14532d;
+        --flow-box-backend-border: #16a34a;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--light-gray);
+        color: var(--text-color);
+        margin: 0;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        padding-bottom: 2rem;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      #theme-toggle {
+        position: absolute;
+        top: -1rem;
+        right: 0;
+        background: none;
+        border: 1px solid var(--medium-gray);
+        border-radius: 9999px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      #theme-toggle:hover {
+        background-color: rgba(128, 128, 128, 0.1);
+      }
+      #theme-toggle svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--text-muted);
+        transition: stroke 0.3s;
+      }
+      .sun-icon,
+      html.dark .moon-icon {
+        display: none;
+      }
+      .moon-icon,
+      html.dark .sun-icon {
+        display: block;
+      }
+
+      h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--header-color);
+        margin: 0;
+        letter-spacing: -0.05em;
+      }
+
+      header p {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .link-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.75rem;
+        background-color: var(--primary-color);
+        color: white !important;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s, transform 0.2s;
+        text-decoration: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      }
+
+      .link-button:hover {
+        background-color: var(--primary-hover);
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+
+      .link-button svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      .section-card {
+        background-color: var(--bg-color);
+        border-radius: 0.75rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: var(--card-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--header-color);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+      }
+
+      h2 svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        stroke: var(--primary-color);
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--header-color);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      p,
+      li {
+        font-size: 1rem;
+        color: var(--text-muted);
+      }
+
+      ul,
+      ol {
+        padding-left: 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.75rem;
+      }
+
+      strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+
+      code {
+        font-family: "Source Code Pro", monospace;
+        background-color: var(--medium-gray);
+        color: var(--text-color);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+      }
+
+      pre {
+        font-family: "Source Code Pro", monospace;
+        background-color: #111827;
+        color: #d1d5db;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border: 1px solid #374151;
+      }
+
+      pre code {
+        background: none;
+        padding: 0;
+      }
+
+      /* Flowchart Styles */
+      .flowchart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        color: var(--text-color);
+      }
+      .flowchart-box {
+        background-color: var(--flow-box-bg);
+        border: 1px solid var(--flow-box-border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+        width: 90%;
+        box-shadow: 0 1px 3px var(--shadow-color-light);
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .flowchart-box strong {
+        color: var(--header-color);
+      }
+      .flowchart-box.user {
+        background-color: var(--flow-box-user-bg);
+        border-color: var(--flow-box-user-border);
+      }
+      .flowchart-box.backend {
+        background-color: var(--flow-box-backend-bg);
+        border-color: var(--flow-box-backend-border);
+      }
+      .flowchart-arrow {
+        font-size: 1.5rem;
+        color: var(--medium-gray);
+      }
+
+      noscript {
+        display: block;
+        padding: 1rem;
+        margin-top: 2rem;
+        background-color: #fff1f2;
+        color: #be123c;
+        border: 1px solid #ffdde0;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+          <svg
+            class="sun-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+            />
+            <circle cx="12" cy="12" r="5" />
+          </svg>
+          <svg
+            class="moon-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <h1>Price Tracker Application</h1>
+        <p>
+          A comprehensive guide to the React & Firebase Price Tracker project.
+        </p>
+        <a
+          href="https://web-tracker-312f2.web.app/"
+          class="link-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          <span>View Live Application</span>
+        </a>
+      </header>
+
+      <section id="tech-stack" class="section-card">
+        <h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="3" width="20" height="18" rx="2" />
+            <path d="M6 8h4m-4 4h4m-4 4h4m6-8h2m-2 4h2m-2 4h2" />
+          </svg>
+          Technology Stack
+        </h2>
+        <p>
+          This application is built with modern, scalable technologies to
+          provide a seamless and real-time user experience.
+        </p>
+        <h3>Frontend</h3>
+        <ul>
+          <li>
+            <strong>React:</strong> A JavaScript library for building dynamic
+            user interfaces.
+          </li>
+          <li>
+            <strong>Tailwind CSS:</strong> A utility-first CSS framework for
+            rapid and responsive styling.
+          </li>
+          <li>
+            <strong>Firebase SDK (v9):</strong> For seamless frontend-backend
+            communication.
+          </li>
+        </ul>
+        <h3>Backend & Database</h3>
+        <ul>
+          <li>
+            <strong>Firebase:</strong> A comprehensive platform for backend
+            services.
+          </li>
+          <li>
+            <strong>Cloud Firestore:</strong> A NoSQL, real-time database for
+            storing product data.
+          </li>
+          <li>
+            <strong>Cloud Functions for Firebase:</strong> Serverless backend
+            running Node.js for web scraping.
+          </li>
+        </ul>
+        <h3>Web Scraping & Infrastructure</h3>
+        <ul>
+          <li>
+            <strong>Axios & Cheerio:</strong> For fetching and parsing HTML
+            content from product pages.
+          </li>
+          <li>
+            <strong>ScraperAPI:</strong> A proxy service to prevent scraping
+            requests from being blocked.
+          </li>
+          <li>
+            <strong>Firebase Hosting:</strong> For deploying and serving the
+            React frontend.
+          </li>
+        </ul>
+      </section>
+
+      <section id="workflow" class="section-card">
+        <h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 20V10m0-4V4m-4 6H4m16 0h-4m-4 6v6m-4-6H4m16 0h-4m-4-6a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM8 4a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm8 16a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"
+            />
+          </svg>
+          Application Workflow
+        </h2>
+        <p>
+          The application follows a modern serverless architecture. The frontend
+          React app handles the UI, while a Firebase Cloud Function manages the
+          web scraping, ensuring security and scalability.
+        </p>
+
+        <div class="flowchart">
+          <div class="flowchart-box user">
+            <strong>1. User Action</strong><br />
+            User pastes a product URL (Amazon AU or JB Hi-Fi) and clicks "Track
+            Price".
+          </div>
+          <div class="flowchart-arrow">&darr;</div>
+          <div class="flowchart-box">
+            <strong>2. Frontend Request</strong><br />
+            React app calls the <code>scrapeUrl</code> Firebase Cloud Function,
+            sending the URL.
+          </div>
+          <div class="flowchart-arrow">&darr;</div>
+          <div class="flowchart-box backend">
+            <strong>3. Backend Scraping</strong><br />
+            The Cloud Function uses a proxy (ScraperAPI) to fetch the HTML from
+            the product page.
+          </div>
+          <div class="flowchart-arrow">&darr;</div>
+          <div class="flowchart-box backend">
+            <strong>4. Data Extraction</strong><br />
+            Cheerio parses the HTML, extracting the title, price, and image URL.
+          </div>
+          <div class="flowchart-arrow">&darr;</div>
+          <div class="flowchart-box">
+            <strong>5. Data Response</strong><br />
+            The function returns the extracted data as a JSON object to the
+            React app.
+          </div>
+          <div class="flowchart-arrow">&darr;</div>
+          <div class="flowchart-box">
+            <strong>6. Database Storage & UI Update</strong><br />
+            React saves the new product data to Cloud Firestore, and the UI
+            updates in real-time.
+          </div>
+        </div>
+      </section>
+
+      <section id="setup" class="section-card">
+        <h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 15l-3.5-3.5 3.5-3.5 3.5 3.5-3.5 3.5zM12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"
+            />
+          </svg>
+          Setup & Deployment
+        </h2>
+        <p>
+          Follow these steps to set up and deploy your own instance of the
+          application.
+        </p>
+
+        <h3>1. Firebase Project Setup</h3>
+        <ol>
+          <li>
+            Go to the
+            <a
+              href="https://console.firebase.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Firebase Console</a
+            >
+            and create a new project.
+          </li>
+          <li>
+            Upgrade your project to the
+            <strong>"Blaze (Pay as you go)"</strong> plan. This is required for
+            Cloud Functions to make external network requests.
+          </li>
+          <li>
+            In the Firebase dashboard, enable
+            <strong>Authentication</strong> (Anonymous provider),
+            <strong>Firestore Database</strong> (Production mode), and
+            <strong>Functions</strong>.
+          </li>
+          <li>
+            Register a new <strong>Web App</strong> in your project settings and
+            copy the `firebaseConfig` object.
+          </li>
+        </ol>
+
+        <h3>2. ScraperAPI Setup</h3>
+        <ol>
+          <li>
+            Go to
+            <a
+              href="https://scraperapi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >scraperapi.com</a
+            >
+            and sign up for a free account.
+          </li>
+          <li>From your dashboard, copy your <strong>API Key</strong>.</li>
+        </ol>
+
+        <h3>3. Local Development</h3>
+        <ol>
+          <li>Clone the project repository.</li>
+          <li>
+            Install the Firebase CLI globally:
+            <pre><code>npm install -g firebase-tools</code></pre>
+          </li>
+          <li>
+            Log in to Firebase:
+            <pre><code>firebase login</code></pre>
+          </li>
+          <li>
+            Initialize the project in the root folder:
+            <pre><code>firebase init</code></pre>
+          </li>
+          <li>
+            <strong>Backend:</strong> Navigate to `functions`, run `npm
+            install`, and paste your ScraperAPI key into `index.js`.
+          </li>
+          <li>
+            <strong>Frontend:</strong> Navigate to `client`, run `npm install`,
+            and paste your `firebaseConfig` object into `src/App.js`.
+          </li>
+          <li>
+            Start the app from the `client` folder:
+            <pre><code>npm start</code></pre>
+          </li>
+        </ol>
+
+        <h3>4. Deployment</h3>
+        <ol>
+          <li>
+            From the `client` folder, create a production build:
+            <pre><code>npm run build</code></pre>
+          </li>
+          <li>Navigate back to the project's **root** folder.</li>
+          <li>
+            Run the deploy command:
+            <pre><code>firebase deploy</code></pre>
+          </li>
+          <li>
+            Firebase will provide you with your live
+            <strong>Hosting URL</strong>.
+          </li>
+        </ol>
+      </section>
+
+      <!-- This is the root element where the React application would be mounted in a real setup. -->
+      <div id="root" style="display: none"></div>
+      <noscript>
+        <h2>JavaScript is required to run this application.</h2>
+        <p>
+          Please enable JavaScript in your browser and refresh the page to use
+          the app.
+        </p>
+      </noscript>
+    </div>
+
+    <script>
+      ;(function () {
+        const themeToggle = document.getElementById("theme-toggle")
+        const htmlEl = document.documentElement
+
+        function setTheme(theme) {
+          if (theme === "dark") {
+            htmlEl.classList.add("dark")
+          } else {
+            htmlEl.classList.remove("dark")
+          }
+          localStorage.setItem("theme", theme)
+        }
+
+        themeToggle.addEventListener("click", () => {
+          const currentTheme = htmlEl.classList.contains("dark")
+            ? "light"
+            : "dark"
+          setTheme(currentTheme)
+        })
+
+        const savedTheme = localStorage.getItem("theme")
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches
+
+        if (savedTheme) {
+          setTheme(savedTheme)
+        } else if (prefersDark) {
+          setTheme("dark")
+        } else {
+          setTheme("light")
+        }
+      })()
+    </script>
+  </body>
+</html>
